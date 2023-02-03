@@ -1,0 +1,14 @@
+# Create VPC “firewall rule(s) - system access”
+
+gcloud compute firewall-rules create xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-ds4--v01 \
+    --description="xall-vpc--vpc-01 - XYZ-Global firewall rule = CERPS-BaU-Dev - ALLOW SAP S4 (DS4) system wide access - version 01" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --network=xall-vpc--vpc-01 \
+    \
+    --priority=1000 \
+    --direction=ingress \
+    --action=allow \
+    --target-tags=xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-ds4--v01 \
+    --source-tags=xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-ds4--v01 \
+    --rules=tcp,udp,icmp

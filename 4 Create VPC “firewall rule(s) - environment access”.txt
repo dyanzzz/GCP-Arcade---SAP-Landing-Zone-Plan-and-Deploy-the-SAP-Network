@@ -1,0 +1,14 @@
+# Create VPC “firewall rule(s) - environment access”
+	
+gcloud compute firewall-rules create xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-env--v01 \
+    --description="xall-vpc--vpc-01 - XYZ-Global firewall rule = CERPS-BaU-Dev - ALLOW environment wide access - version 01" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --network=xall-vpc--vpc-01 \
+    \
+    --priority=1000 \
+    --direction=ingress \
+    --action=allow \
+    --target-tags=xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-env--v01 \
+    --source-tags=xall-vpc--vpc-01--xgl-fw--cerps-bau-dev--a-env--v01 \
+    --rules=tcp:3200-3299,tcp:3300-3399,tcp:4800-4899,tcp:80,tcp:8000-8099,tcp:443,tcp:44300-44399,tcp:3600-3699,tcp:8100-8199,tcp:44400-44499,tcp:50000-59999,tcp:30000-39999,tcp:4300-4399,tcp:40000-49999,tcp:1128-1129,tcp:5050,tcp:8000-8499,tcp:515,icmp

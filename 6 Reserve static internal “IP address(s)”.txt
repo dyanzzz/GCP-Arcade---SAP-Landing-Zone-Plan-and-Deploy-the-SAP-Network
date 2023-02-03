@@ -1,0 +1,38 @@
+# Reserve static internal “IP address(s)”
+
+gcloud compute addresses create xgl-ip-address--cerps-bau-dev--dh1--d-cerpshana1 \
+    --description="XYZ-Global reserved IP address = CERPS-BaU-Dev - SAP HANA 1 (DH1) - d-cerpshana1" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --region=us-central1 \
+    --subnet=xgl-subnet--cerps-bau-nonprd--be1-01 \
+    \
+    --addresses=10.1.1.100
+	
+	
+gcloud compute addresses create xgl-ip-address--cerps-bau-dev--ds4--d-cerpss4db \
+    --description="XYZ-Global reserved IP address = CERPS-BaU-Dev - SAP S4 (DS4) - d-cerpss4db" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --region=us-central1 \
+    --subnet=xgl-subnet--cerps-bau-nonprd--be1-01 \
+    \
+    --addresses=10.1.1.101
+	
+gcloud compute addresses create xgl-ip-address--cerps-bau-dev--ds4--d-cerpss4scs \
+    --description="XYZ-Global reserved IP address = CERPS-BaU-Dev - SAP S4 (DS4) - d-cerpss4scs" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --region=us-central1 \
+    --subnet=xgl-subnet--cerps-bau-nonprd--be1-01 \
+    \
+    --addresses=10.1.1.102
+	
+gcloud compute addresses create xgl-ip-address--cerps-bau-dev--ds4--d-cerpss4app1 \
+    --description="XYZ-Global reserved IP address = CERPS-BaU-Dev - SAP S4 (DS4) - d-cerpss4app1" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --region=us-central1 \
+    --subnet=xgl-subnet--cerps-bau-nonprd--be1-01 \
+    \
+    --addresses=10.1.1.103

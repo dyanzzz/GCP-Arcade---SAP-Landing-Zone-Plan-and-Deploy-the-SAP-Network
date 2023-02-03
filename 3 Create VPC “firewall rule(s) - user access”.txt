@@ -1,0 +1,53 @@
+# Create VPC “firewall rule(s) - user access”
+
+gcloud compute firewall-rules create xall-vpc--vpc-01--xall-fw--user--a--linux--v01 \
+    --description="xall-vpc--vpc-01 - XYZ-all firewall rule = User access - ALLOW standard linux access - version 01" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --network=xall-vpc--vpc-01 \
+    \
+    --priority=1000 \
+    --direction=ingress \
+    --action=allow \
+    --target-tags=xall-vpc--vpc-01--xall-fw--user--a--linux--v01 \
+    --source-ranges=0.0.0.0/0 \
+    --rules=tcp:22,icmp
+	
+gcloud compute firewall-rules create xall-vpc--vpc-01--xall-fw--user--a--windows--v01 \
+    --description="xall-vpc--vpc-01 - XYZ-all firewall rule = User access - ALLOW standard windows access - version 01" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --network=xall-vpc--vpc-01 \
+    \
+    --priority=1000 \
+    --direction=ingress \
+    --action=allow \
+    --target-tags=xall-vpc--vpc-01--xall-fw--user--a--windows--v01 \
+    --source-ranges=0.0.0.0/0 \
+    --rules=tcp:3389,icmp
+	
+gcloud compute firewall-rules create xall-vpc--vpc-01--xall-fw--user--a--sapgui--v01 \
+    --description="xall-vpc--vpc-01 - XYZ-all firewall rule = User access - ALLOW SAPGUI access - version 01" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --network=xall-vpc--vpc-01 \
+    \
+    --priority=1000 \
+    --direction=ingress \
+    --action=allow \
+    --target-tags=xall-vpc--vpc-01--xall-fw--user--a--sapgui--v01 \
+    --source-ranges=0.0.0.0/0 \
+    --rules=tcp:3200-3299,tcp:3600-3699
+	
+gcloud compute firewall-rules create xall-vpc--vpc-01--xall-fw--user--a--sap-fiori--v01 \
+    --description="xall-vpc--vpc-01 - XYZ-all firewall rule = User access - ALLOW SAP Fiori access - version 01" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    --network=xall-vpc--vpc-01 \
+    \
+    --priority=1000 \
+    --direction=ingress \
+    --action=allow \
+    --target-tags=xall-vpc--vpc-01--xall-fw--user--a--sap-fiori--v01 \
+    --source-ranges=0.0.0.0/0 \
+    --rules=tcp:80,tcp:8000-8099,tcp:443,tcp:4300-44300

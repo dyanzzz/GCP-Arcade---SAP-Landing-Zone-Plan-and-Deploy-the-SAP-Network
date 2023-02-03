@@ -1,0 +1,11 @@
+# Create “VPC network(s)”
+
+gcloud compute networks create xall-vpc--vpc-01 \
+    --description="XYZ-all VPC network = Standard VPC network - 01" \
+    \
+    --project=qwiklabs-gcp-02-3a07dc2d535c \
+    \
+    --subnet-mode=custom \
+    --bgp-routing-mode=global \
+    --mtu=1460
+	
