@@ -1,0 +1,119 @@
+Google Clout - Google Kubernetes Engine Sandbox fun 
+
+gcloud container clusters get-credentials production --zone=us-east1-b
+
+nano sample.yaml
+now after pasting press ctrl x then y then enter okkk
+now press ctrl f 
+
+kubectl create -f sample.yaml
+
+gcloud container node-pools create protected-pool --cluster=production --zone=us-east1-b --machine-type=n1-standard-2 --image-type=cos_containerd --sandbox type=gvisor
+
+kubectl apply -f sample.yaml
+
+kubectl apply -f sample.yaml
+
+
+
+
+==============================================================================================================================
+
+# sandbox-metadata-test.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: privileged
+  labels:
+    app: privileged
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: privileged
+  template:
+    metadata:
+      labels:
+        app: privileged
+    spec:
+      containers:
+      - name: privileged
+        image: busybox
+        command: ["/bin/sleep","10000"]
+
+==============================================================================================================================
+
+# sandbox-metadata-test.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: regular
+  labels:
+    app: regular
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: regular
+  template:
+    metadata:
+      labels:
+        app: regular
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: sandbox.gke.io/runtime
+                operator: In
+                values:
+                - gvisor
+      tolerations:
+        - effect: NoSchedule
+          key: sandbox.gke.io/runtime
+          operator: Equal
+          value: gvisor
+      containers:
+      - name: regular
+        image: busybox
+        command: ["/bin/sleep","10000"]
+
+==============================================================================================================================
+
+# sandbox-metadata-test.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: isolated
+  labels:
+    app: isolated
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: isolated
+  template:
+    metadata:
+      labels:
+        app: isolated
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: sandbox.gke.io/runtime
+                operator: In
+                values:
+                - gvisor
+      tolerations:
+        - effect: NoSchedule
+          key: sandbox.gke.io/runtime
+          operator: Equal
+          value: gvisor
+      runtimeClassName: gvisor
+      containers:
+      - name: isolated
+        image: busybox
+        command: ["/bin/sleep","10000"]
